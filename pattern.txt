@@ -1,0 +1,6 @@
+Название паттерна: фабрика
+Файл: factory.py
+Объекты, возращаемые фабрикой:
+- Forest(Line), файл forest.py
+- Water(Line), файл water.py
+- Road(Line), файл road.py

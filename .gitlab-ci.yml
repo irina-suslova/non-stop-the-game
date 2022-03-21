@@ -1,0 +1,52 @@
+image: python:latest
+
+cache:
+  paths:
+  - ~/.cache/pip/
+
+
+before_script:
+  - python -V 
+  - pip install -r CI/requirements.txt
+
+stages:
+  - style
+  - test
+  - lint
+  - deploy
+
+pep8:
+  stage: style
+  before_script:
+  - pip install -r CI/requirements.txt
+  script:
+  - chmod u+x CI/pycodestyle_runner.sh
+  - ./CI/pycodestyle_runner.sh
+  artifacts:
+    paths:
+      - public/pycodestyle.txt
+
+lint:
+  stage: style
+  script:
+  - chmod u+x CI/pylint_runner.sh
+  - ./CI/pylint_runner.sh
+  artifacts:
+    paths:
+      - public/pylint.svg
+
+test:
+  stage: test
+  script:
+  - python -m unittest tests.py
+  #- coverage report
+
+pages:
+  stage: deploy
+  script:
+  - echo 'Publish pylint badge'
+  artifacts:
+    paths:
+    - public
+  only:
+  - master

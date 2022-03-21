@@ -1,0 +1,14 @@
+#project
+Pillow==6.0.0
+pygame==1.9.4
+Sphinx==1.8.4
+mock==3.0.5
+
+#pep8
+pycodestyle==2.5.0
+
+#pylint 
+pylint==2.3.1
+pylint-django==2.0.7
+anybadge==1.1.1
+pylint-json2html==0.1.0
